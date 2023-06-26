@@ -23,6 +23,11 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import NestedList from '../../components/NestedList/NestedList';
+import SendIcon from '@mui/icons-material/Send';
+import SerialIcon from '../../features/serial/serial_io_icon.js'
+import CloudIcon from '@mui/icons-material/Cloud';
+import { Breakpoint } from '@mui/system/createTheme/createTheme';
 
 function Copyright(props: any) {
   return (
@@ -79,7 +84,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
           duration: theme.transitions.duration.leavingScreen,
         }),
         width: theme.spacing(7),
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('sm' as Breakpoint)]: {
           width: theme.spacing(9),
         },
       }),
@@ -90,7 +95,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Dashboard() {
+export default function Home() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -149,6 +154,62 @@ export default function Dashboard() {
           </Toolbar>
           <Divider />
           <List component="nav">
+            <NestedList nestItems = {
+              [
+                {
+                  'title':"シリアル接続",
+                  'icon':<SerialIcon />,
+                  'id':'1',
+                  'children':[
+                    {
+                      'title':"第1節",
+                      'icon':<SerialIcon />,
+                      'id':'1-1',
+                    },
+                    {
+                      'title':"第2節",
+                      'icon':<SerialIcon />,
+                      'id':'1-2',
+                    }
+                  ]
+                },
+                {
+                  'title':"クラウド",
+                  'icon':<CloudIcon />,
+                  'id':'2',
+                  'children':[
+                    {
+                      'title':"第1節",
+                      'icon':<CloudIcon />,
+                      'id':'2-1',
+                    },
+                    {
+                      'title':"第2節",
+                      'icon':<CloudIcon />,
+                      'id':'2-2',
+                    },
+                    {
+                      'title':"第3節",
+                      'icon':<SendIcon />,
+                      'id':'2-3',
+                      'children':[
+                        {
+                            'title':"第一項",
+                            'icon':<SendIcon />,
+                            'id':'2-3-1',
+                        },
+                        {
+                            'title':"第二項",
+                            'icon':<SendIcon />,
+                            'id':'2-3-2',
+                        },
+                      ]
+                    },
+                  ]
+                }
+              ]            
+            }/>
+            <Divider sx={{ my: 1 }} />
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
@@ -167,43 +228,7 @@ export default function Dashboard() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Chart />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
-                </Paper>
-              </Grid>
-            </Grid>
-            <Copyright sx={{ pt: 4 }} />
-          </Container>
+          <Copyright sx={{ pt: 4 }} />
         </Box>
       </Box>
     </ThemeProvider>
