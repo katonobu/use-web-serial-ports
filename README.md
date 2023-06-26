@@ -1,6 +1,13 @@
 # use-web-serial-ports
 
-This repo is based [MUI examples/material-next-app-router-ts](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts)
+1.  [MUI examples/material-next-app-router-ts](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts)以下をコピー。
+1. `npm install`,`npm run dev`で動作確認。
+1. [dashboard template](https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/dashboard) の.tsファイルを`src/layouts/Home`にコピー
+1. `src/layouts/Home/Home.tsx` の2行目以降を削除し、`src/layouts/Home/Dashboard.tsx`の中身を張り付け
+1. `package.json`に`"recharts": "latest",`を追加。
+
+
+------
 
 # Material UI - Next.js App Router example in TypeScript
 
