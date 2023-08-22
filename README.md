@@ -8,8 +8,35 @@
 
 ## App-router対応
 - `/app` 下に`_components`ディレクトリを掘って、ここにlayout,pageの中身を持ってくる
-  - 
+```
++- src/
+   +- app/
+   |  +- _components/
+   |  +- fonts/
+   |  +- favicon.ico
+   |  +- layout.tsx:サイドメニュー、ヘッダ、フッタ。Dashboardのメインコンテンツ以外はここに実装
+   |  +- page.tsx:port一覧の実装
+   |  +- [id]/
+   |  |  +- page.tsx:こいつがサーバーレンダリングされる★
+   |
+   +- features/web-serial
+   |  +- SerialPortIcon.tsx:アイコン
+   |  +- webSerialDataProvider.ts:カスタムフック
+   |  +- webSerialWorkerAdapter.ts:Non-reactのworkerカスタムフック/worker I/F
+   |  +- worker/
+   |  |  +- webSerialWorker.ts:workerメイン
+   |  |  +- workerHandler.ts:ドライバとmainスレッドのI/F
+   |  |  +- webSerialPorts.ts:navigator.serialドライバ
+   |  |  +- vendors.ts:vid/ベンダー名対応テーブル
+   |
+   +- components/Theme/ThemeRegistry:特にいじっていない
+   |  +- EmotionCache.tsx
+   |  +- theme.ts
+   |  +- ThemeRegistry.tsx
+```
 
+## dynamic routeing対応
+- '
 ------
 
 # Material UI - Next.js App Router example in TypeScript
