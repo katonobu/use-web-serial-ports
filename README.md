@@ -36,8 +36,19 @@
 ```
 
 ## dynamic routeing対応
-- '
-------
+どうも、id毎のURLでのアクセスで、
+完全クライアントサイド、は、うまく動いていない。
+
+[Static Exports](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
+によれば、idの個数上限がある有限個の場合、
+ビルド時に、
+[generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params)を用いることで、
+事前にhtmlを生成できるようだが、
+うまく動いていないように見える。
+`src\app\[id]\page.tsx`で沢山のIDを生成しておき、
+page.tsxでidをpropで渡して、
+その先のtsxをdynamic loadさせれば、行けるのかもしれない。。。。
+一旦ここで退却
 
 # Material UI - Next.js App Router example in TypeScript
 

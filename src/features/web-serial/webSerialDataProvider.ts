@@ -21,10 +21,23 @@ const subscribeIsOpenBuilder = (id:string) => (callback:()=>void) => {
 export const useIsOpen = (id:string) => useSyncExternalStore(subscribeIsOpenBuilder(id), getIsOpenBuilder(id), ()=>false)
 
 // useRxBufferLen
-const getLineNumBuilder = (id:string) => ()=>rxLineNumStore[parseInt(id,10)].get()
+const initRxBufferLen = {totalLines:0, updatedLines:0}
+const getLineNumBuilder = (id:string) => ()=> {
+    const store = rxLineNumStore[parseInt(id,10)]
+    if (store !== undefined) {
+        return store.get()
+    } else {
+        return initRxBufferLen
+    }
+}
 const subscribeLineNumBuilder = (id:string) => (callback:()=>void) => {
-    const unsubscribe = rxLineNumStore[parseInt(id,10)].subscribe(callback)
-    return ()=>unsubscribe()
+    const store = rxLineNumStore[parseInt(id,10)]
+    if (store !== undefined) {
+        const unsubscribe = rxLineNumStore[parseInt(id,10)].subscribe(callback)
+        return ()=>unsubscribe()
+    } else {
+        return ()=>{}
+    }
 }
 export const useRxBufferLen = (id:string) => useSyncExternalStore(subscribeLineNumBuilder(id), getLineNumBuilder(id), ()=>({totalLines:0, updatedLines:0}))
 
