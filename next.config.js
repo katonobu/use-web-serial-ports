@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   reactStrictMode: true,
   swcMinify: true,
   modularizeImports: {
@@ -8,6 +7,7 @@ const nextConfig = {
       transform: '@mui/icons-material/{{member}}',
     },
   },
+  output: 'export',
 };
 
 module.exports = nextConfig;
