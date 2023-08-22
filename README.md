@@ -1,11 +1,14 @@
-# use-web-serial-ports
-
+# web-serial-gui
+## 最初
 1.  [MUI examples/material-next-app-router-ts](https://github.com/mui/material-ui/tree/master/examples/material-next-app-router-ts)以下をコピー。
 1. `npm install`,`npm run dev`で動作確認。
 1. [dashboard template](https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/dashboard) の.tsファイルを`src/layouts/Home`にコピー
 1. `src/layouts/Home/Home.tsx` の2行目以降を削除し、`src/layouts/Home/Dashboard.tsx`の中身を張り付け
 1. `package.json`に`"recharts": "latest",`を追加。
 
+## App-router対応
+- `/app` 下に`_components`ディレクトリを掘って、ここにlayout,pageの中身を持ってくる
+  - 
 
 ------
 

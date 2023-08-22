@@ -3,8 +3,8 @@ import ThemeRegistry from '@/components/Theme/ThemeRegistry/ThemeRegistry';
 import Dashboard from './_components/Dashboard'
 
 export const metadata = {
-  title: 'Next App with MUI5',
-  description: 'next app with mui5',
+  title: 'Web-Serial GUI',
+  description: 'Web Serial port terminal',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
