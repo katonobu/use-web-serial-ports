@@ -7,7 +7,7 @@ const nextConfig = {
       transform: '@mui/icons-material/{{member}}',
     },
   },
-  output: 'export',
+//  output: 'export',
 };
 
 module.exports = nextConfig;
