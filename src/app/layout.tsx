@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ThemeRegistry from '@/components/Theme/ThemeRegistry/ThemeRegistry';
 import Dashboard from './_components/Dashboard'
+import {PortInfosProvider} from '@/features/ws-serial/PortInfosProvider';
 
 export const metadata = {
   title: 'Web-Serial GUI',
@@ -12,9 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <ThemeRegistry>
-          <Dashboard>
-            {children}
-          </Dashboard>
+          <PortInfosProvider>
+            <Dashboard>
+              {children}
+            </Dashboard>
+          </PortInfosProvider>              
         </ThemeRegistry>
       </body>
     </html>
