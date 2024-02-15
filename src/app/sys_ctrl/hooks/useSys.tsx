@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {CreHandler} from '../control/creHandler'
+import {CreHandler} from '@/features/ws-serial/creHandler'
 
 export type SysSttStrType = 
   "IDLE" | // スタンバイ状態：電源 ON 直後

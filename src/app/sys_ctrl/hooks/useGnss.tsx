@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {CreHandler} from '../control/creHandler'
+import { CreHandler } from '@/features/ws-serial/creHandler'
 
 export const useGnssStt = (creHandler:CreHandler|null) => {
     const [gnssStt, setGnssStt] = useState<string | null>(null)

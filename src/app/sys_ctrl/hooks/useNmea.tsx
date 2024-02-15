@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {CreHandler} from '../control/creHandler'
+import { CreHandler } from '@/features/ws-serial/creHandler'
 
 let sentenceGroup:string[] = []
 export const useNmeaRxSentences = (creHandler:CreHandler|null, analyseSentences:string[]):string[] => {

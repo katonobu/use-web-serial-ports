@@ -66,6 +66,7 @@ export class WsFt4232 {
                 rsp.data.vid === 1027
             ))
             Object.keys(findPorts).forEach((key) => {
+                // @ts-ignore
                 this.portInfos[key] = filtered.find((rsp) => rsp.data.serial_number.slice(-1) == findPorts[key].suffix)?.data
             })
 
@@ -84,6 +85,7 @@ export class WsFt4232 {
             })
 
             if (this.socket && this.socket.id) {
+                // @ts-ignore
                 const rooms = Object.keys(this.portInfos).map((key) => this.portInfos[key].name)
                 const all_joined_promise = new Promise<void>((resolve, reject) => {
                     this.socket?.on('join_response', (data: any) => {
@@ -178,6 +180,7 @@ export class WsFt4232 {
     }
     async finilize(): Promise<void> {
         console.log("Finalize start")
+        // @ts-ignore
         const rooms = Object.keys(this.portInfos).map((key) => this.portInfos[key].name)
         this.socket?.off('rx_data_notify')
         rooms.forEach((room) => {

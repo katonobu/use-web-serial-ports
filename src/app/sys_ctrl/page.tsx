@@ -31,7 +31,7 @@ const sysSttColorTbl:Record<SysSttStrType,string> = {
   "NotAvailable":"black"
 }
 
-export const analyseSentences:string[] = [
+const analyseSentences:string[] = [
   '$PSPRA',
   '$GPGGA',
   '$GNGLL',

@@ -1,4 +1,5 @@
-import {CreHandler, sendCmdWaitRspType} from './creHandler'
+import { CreHandler, sendCmdWaitRspType } from '@/features/ws-serial/creHandler'
+
 
 export const resetByCmd = async (creHandler: CreHandler): Promise<void> => {
     // 先に待ち受けPromiseを作っておいてから

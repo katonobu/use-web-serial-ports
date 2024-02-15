@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {CreHandler} from '../control/creHandler'
+import {CreHandler} from '@/features/ws-serial/creHandler'
 
 let sentenceGroup:string[] = []
 // 引数で与えられたanalyseSentencesの先頭要素で配列を初期化し、

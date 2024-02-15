@@ -1,5 +1,5 @@
-import {CreHandler, sendCmdWaitRspType} from '../control/creHandler'
 import { resetByCmd, initCmds } from '../control/controlSequence'
+import { CreHandler, sendCmdWaitRspType } from '@/features/ws-serial/creHandler'
 
 
 export const ResetInitButton = (props:{
