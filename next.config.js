@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  reactStrictMode: false, // trueだとログが2回出る
+  reactStrictMode: false,
   swcMinify: true,
   modularizeImports: {
     '@mui/icons-material': {
