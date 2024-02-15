@@ -2,7 +2,8 @@
 const nextConfig = {
   output: 'export',
   reactStrictMode: false,
-  swcMinify: true,
+//  swcMinify: true,
+  swcMinify: false,
   modularizeImports: {
     '@mui/icons-material': {
       transform: '@mui/icons-material/{{member}}',
