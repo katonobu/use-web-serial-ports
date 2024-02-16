@@ -1,17 +1,19 @@
 "use client";
 import { useState, useEffect } from 'react'
-//import './App.css'
-import {GnssHostFwSentPre, GnssSttPre, GnssVerPre, GnssSttDotsEnum} from './components/Gnss'
-import {SysVerPre, SysModePre, SysSttPre, SysSttIndicator} from './components/Sys'
-import {SysSttStrType} from './hooks/useSys'
-import {ErrorMessagePre} from './components/ErrorMsg'
-import { DispDebugSelect } from './components/DispDebugSelect'
-import {CreHandler, sendCmdWaitRspType} from '@/features/ws-serial/creHandler'
-import {usePortInfos} from '@/features/ws-serial/PortInfosProvider';
 
-import {useNmeaRxSentences, useNmeaSingleLineAnalyseSentence} from './hooks/useNmea'
-import {NmeaSentencesPre, ZdaView} from './components/Nmea'
-import {ResetInitButton, InitButton} from './components/ResetInitButton'
+import { ErrorMessagePre } from '@/components/common/ErrorMsg'
+import { DispDebugSelect } from '@/components/common/DispDebugSelect'
+import { usePortInfos } from '@/features/ws-serial/PortInfosProvider';
+import { CreHandler } from '@/features/ws-serial/creHandler'
+
+import { GnssHostFwSentPre, GnssSttPre, GnssVerPre, GnssSttDotsEnum } from './components/Gnss'
+import { SysVerPre, SysModePre, SysSttPre, SysSttIndicator } from './components/Sys'
+import { SysSttStrType } from './hooks/useSys'
+import { sendCmdWaitRspType } from '@/features/ws-serial/creHandler'
+
+import {useNmeaRxSentences, useNmeaSingleLineAnalyseSentence } from './hooks/useNmea'
+import {NmeaSentencesPre, ZdaView } from './components/Nmea'
+import {ResetInitButton, InitButton } from './components/ResetInitButton'
 
 const sysSttColorTbl:Record<SysSttStrType,string> = {
   "IDLE":"gray",// スタンバイ状態：電源 ON 直後
@@ -50,12 +52,15 @@ const analyseSentences:string[] = [
   '$PSEND',
 ]
 
+//---------------------------------------
+
 export default function RootPage() {
   const [initSuccess, setInitSuccess] = useState<boolean>(false)
   const [disable, setDisable] = useState<boolean>(true)
-  const [creHandler, setCreHandler] = useState<CreHandler | null>(null)
   const [dispDebug, setDispDebug] = useState<boolean>(true)
   const [errMsg, setErrMsg] = useState<string[]>([])
+
+  const [creHandler, setCreHandler] = useState<CreHandler | null>(null)
 
   const [sysVer, setSysVer] = useState<sendCmdWaitRspType | null>(null)
   const [sysMode, setSysMode] = useState<sendCmdWaitRspType | null>(null)

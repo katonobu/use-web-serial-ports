@@ -1,21 +1,27 @@
 "use client";
 import { useState, useEffect } from 'react'
 
-import SlideSwitch from './components/SlideSwitch'
-import CheckIndicator from './components/CheckIndicator'
-import {HwReset} from './components/ResetButtons'
-import {usePortInfos} from '@/features/ws-serial/PortInfosProvider';
-import {portControlerType} from '@/features/ws-serial/wsFt4232';
-  
+import SlideSwitch from '@/components/common/SlideSwitch'
+import CheckIndicator from '@/components/common/CheckIndicator'
+import { ErrorMessagePre } from '@/components/common/ErrorMsg'
+import { DispDebugSelect } from '@/components/common/DispDebugSelect'
+import { usePortInfos } from '@/features/ws-serial/PortInfosProvider';
+import { portControlerType } from '@/features/ws-serial/wsFt4232';
+import { HwReset } from './components/ResetButtons'
+
+//---------------------------------------
+
 export default function RootPage() {
   const [initSuccess, setInitSuccess] = useState<boolean>(false)
-  const [enablePortStt, setEnablePortStt] = useState<boolean>(false)
-  const [sleepPortStt, setSleepPortStt] = useState<boolean>(false)
   const [disable, setDisable] = useState<boolean>(true)
   const [dispDebug, setDispDebug] = useState<boolean>(false)
   const [errMsg, setErrMsg] = useState<string[]>([])
+
   const [hwAccess, setHwAccess] = useState<portControlerType | null>(null)
-  const resetCtrlDisable = !(initSuccess && !disable)
+
+  const [enablePortStt, setEnablePortStt] = useState<boolean>(false)
+  const [sleepPortStt, setSleepPortStt] = useState<boolean>(false)
+
   const ports = usePortInfos()
   useEffect(()=>{
     if (ports.port_ctrl.portCtrl) {
@@ -25,6 +31,7 @@ export default function RootPage() {
     }
   },[ports])
 
+  const targetCtrlDisable = !(initSuccess && !disable)
   return (
     <div
       style={{
@@ -43,7 +50,7 @@ export default function RootPage() {
         <HwReset
           setErrMsg={setErrMsg}
           hwAccess={hwAccess}
-          disable={resetCtrlDisable}
+          disable={targetCtrlDisable}
           setDisable={setDisable}
           enablePortStt={enablePortStt}
           setEnablePortStt={setEnablePortStt}
@@ -51,31 +58,15 @@ export default function RootPage() {
           setSleepPortStt={setSleepPortStt}
         />
       </div>
+
       <div
         style={{
           padding: '32px'
         }}
       >
-        <div>
-          {errMsg.map((msg, idx)=>(<pre key={idx.toString(10)} style={{ margin: '8px'}}>{msg}</pre>))}
-        </div>
+        <ErrorMessagePre errMsgs = {errMsg}></ErrorMessagePre>
         <hr></hr>
-        <label
-            // このlabel要素内でクリックするとcheckboxのonChange()が呼ばれる
-            htmlFor={'disp-debug'}
-        >
-          <input
-            // width,heightともに0なので見えない
-            type="checkbox"
-            id={'disp-debug'}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                //              console.log(event.target.checked)
-                setDispDebug(event.target.checked)
-            }}
-            checked={dispDebug}
-          />
-          View Debugging Info
-        </label>                
+        <DispDebugSelect setDispDebug={setDispDebug} dispDebug={dispDebug} />
         {dispDebug ? (
           <div>
             <SlideSwitch
@@ -115,7 +106,7 @@ export default function RootPage() {
               unCheckedBackgroundColor='rgb(208,208,208)'
             />
             <CheckIndicator
-              checked={resetCtrlDisable}
+              checked={targetCtrlDisable}
               checkedStr={"ResetCtrlDisable"}
               attackDurationMs={10}
               releaseDurationMs={10}

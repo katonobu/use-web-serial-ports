@@ -1,4 +1,4 @@
-import SlideSwitch from './SlideSwitch'
+import SlideSwitch from '@/components/common/SlideSwitch'
 import {portControlerType} from '@/features/ws-serial/wsFt4232';
 
 enum resetSequenceEnum {

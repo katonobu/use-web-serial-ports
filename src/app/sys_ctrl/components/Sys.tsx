@@ -1,6 +1,7 @@
-import CheckIndicator from './CheckIndicator'
+
 import {useSysStt, SysSttStrType} from '../hooks/useSys'
 import { CreHandler, sendCmdWaitRspType } from '@/features/ws-serial/creHandler'
+import CheckIndicator from '@/components/common/CheckIndicator'
 
 export const SysVerPre = (props:{sysVer:sendCmdWaitRspType | null})=>{
     const {sysVer} = props

@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect } from 'react'
-import {ErrorMessagePre} from './components/ErrorMsg'
-import { DispDebugSelect } from './components/DispDebugSelect'
-import SlideSwitch from './components/SlideSwitch'
-import CheckIndicator from './components/CheckIndicator'
-import {CreHandler} from '@/features/ws-serial/creHandler'
-import {usePortInfos} from '@/features/ws-serial/PortInfosProvider';
+
+import SlideSwitch from '@/components/common/SlideSwitch'
+import CheckIndicator from '@/components/common/CheckIndicator'
+import { ErrorMessagePre } from '@/components/common/ErrorMsg'
+import { DispDebugSelect } from '@/components/common/DispDebugSelect'
+import { usePortInfos } from '@/features/ws-serial/PortInfosProvider';
+import { CreHandler } from '@/features/ws-serial/creHandler'
 
 import {useNmeaRxSentences, useNmeaSingleLineAnalyseSentence,useNmeaMultiLineAnalyseSentence} from './hooks/useNmea'
 import {NmeaSentencesPre, NmeaMultiLineSentencesPre, ZdaView, RmcHeadVelView, RmcNorthCompass, GsvView} from './components/Nmea'
@@ -52,19 +53,24 @@ const multiLineAnalyseSentences:string[] = [
   '$QZGSV'
 ]
 
+//---------------------------------------
+
 export default function RootPage() {
-  const [creHandler, setCreHandler] = useState<CreHandler | null>(null)
   const [dispDebug, setDispDebug] = useState<boolean>(true)
+  const [errMsg, setErrMsg] = useState<string[]>([])
+  
+  const [creHandler, setCreHandler] = useState<CreHandler | null>(null)
+  
   const [currentPosition, setCurrentPosition] = useState<[number,number]>([35.450329,139.634197])
   const [positionFixed, setPositionFixed] = useState<boolean>(false)
   const [currentPositionMakesCenter, setCurrentPositionMakesCenter] = useState<boolean>(true)
-//  const [errMsg, setErrMsg] = useState<string[]>([])
-  const errMsg:string[] = []
-
+  
   const sentences = useNmeaRxSentences(creHandler, startEndSentences)
   const sentenceInfos = useNmeaSingleLineAnalyseSentence(sentences, analyseSentences)
   const sentencesInfos = useNmeaMultiLineAnalyseSentence(sentences, multiLineAnalyseSentences)
+  
   updatePosByRmc(sentenceInfos, setCurrentPosition, setPositionFixed)
+    
   const ports = usePortInfos()
   useEffect(()=>{
     if (ports.gnss_mon.creHandler) {
