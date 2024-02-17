@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 
 import SlideSwitch from '@/components/common/SlideSwitch'
 import CheckIndicator from '@/components/common/CheckIndicator'
@@ -10,22 +11,17 @@ import { CreHandler } from '@/features/ws-serial/creHandler'
 
 import {useNmeaRxSentences, useNmeaSingleLineAnalyseSentence,useNmeaMultiLineAnalyseSentence} from './_hooks/useNmea'
 import {NmeaSentencesPre, NmeaMultiLineSentencesPre, ZdaView, RmcHeadVelView, RmcNorthCompass, GsvView} from './_components/Nmea'
-/*
-import Leaflet from 'leaflet'
-import 'leaflet/dist/leaflet.css';
-import {updatePosByRmc, PositionMap} from './components/PositionMap'
-Leaflet.Icon.Default.imagePath =
-  '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/'
-*/
-import {updatePosByRmc} from './_components/PositionMap'
+import {updatePosByRmc} from './_components/updatePosByRmc'
 
-const PositionMap = (props: {
-  positionFixed: boolean,
-  currentPosition: [number,number],
-  currentPositionMakesCenter:boolean
-}) => {
-  return null
-}
+//import {PositionMap} from './_components/PositionMap'
+
+const PositionMap = dynamic(
+  () => import('./_components/PositionMap').then((mod) => mod.PositionMap),
+  {
+      ssr: false,
+      loading: () => <p>MAP Loading...</p>    
+  }
+)
 
 const startEndSentences:string[] = [
   '$PSPRA', // useNmeaRxSentences()では先頭に記載したセンテンスがセンテンスの一塊の先頭として扱われる

@@ -12,11 +12,11 @@ import Link from 'next/link';
 
 export const MenuListItems = ()=>{
   const [portsInfo, setPortsInfo] = useState([
-    <ListItemButton key={"Terminal"}>
+    <ListItemButton key={"terminal"}>
       <ListItemIcon>
-        {<SerialPortIcon color="rgba(128, 128, 128, 0.54)"/>}
+        <SerialPortIcon color="rgba(128, 128, 128, 0.54)"/>
       </ListItemIcon>
-      <ListItemText primary={"Terminal"} />
+      <ListItemText primary={"terminal"} />
     </ListItemButton>
   ])
   const ports = usePortInfos()
@@ -26,19 +26,19 @@ export const MenuListItems = ()=>{
         <Link href={`/${key}`} key={key}>
           <ListItemButton>
             <ListItemIcon>
-              {<SerialPortIcon color="rgba(0, 0, 0, 0.54)"/>}
+              <SerialPortIcon color="rgba(0, 0, 0, 0.54)"/>
             </ListItemIcon>
             <ListItemText primary={key} />
           </ListItemButton>
         </Link>
       )
     })
-    const key = "Terminal"
+    const key = "terminal"
     portList.push(
-      <Link href={`/${key.toLowerCase()}`} key={key}>
+      <Link href={`/${key}`} key={key}>
         <ListItemButton>
           <ListItemIcon>
-            <SerialPortIcon color="rgba(0, 0, 0, 0.54)"/>:
+            <SerialPortIcon color="rgba(0, 0, 0, 0.54)"/>
           </ListItemIcon>
           <ListItemText primary={key} />
         </ListItemButton>
