@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useGnssStt, gnssSttStrToEnumStr } from '../hooks/useGnss'
+import { useGnssStt, gnssSttStrToEnumStr } from '../_hooks/useGnss'
 import { CreHandler, sendCmdWaitRspType } from '@/features/ws-serial/creHandler'
 
 export const GnssVerPre = (props: { gnssVer: sendCmdWaitRspType | null }) => {

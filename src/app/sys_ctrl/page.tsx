@@ -6,14 +6,14 @@ import { DispDebugSelect } from '@/components/common/DispDebugSelect'
 import { usePortInfos } from '@/features/ws-serial/PortInfosProvider';
 import { CreHandler } from '@/features/ws-serial/creHandler'
 
-import { GnssHostFwSentPre, GnssSttPre, GnssVerPre, GnssSttDotsEnum } from './components/Gnss'
-import { SysVerPre, SysModePre, SysSttPre, SysSttIndicator } from './components/Sys'
-import { SysSttStrType } from './hooks/useSys'
+import { GnssHostFwSentPre, GnssSttPre, GnssVerPre, GnssSttDotsEnum } from './_components/Gnss'
+import { SysVerPre, SysModePre, SysSttPre, SysSttIndicator } from './_components/Sys'
+import { SysSttStrType } from './_hooks/useSys'
 import { sendCmdWaitRspType } from '@/features/ws-serial/creHandler'
 
-import {useNmeaRxSentences, useNmeaSingleLineAnalyseSentence } from './hooks/useNmea'
-import {NmeaSentencesPre, ZdaView } from './components/Nmea'
-import {ResetInitButton, InitButton } from './components/ResetInitButton'
+import {useNmeaRxSentences, useNmeaSingleLineAnalyseSentence } from './_hooks/useNmea'
+import {NmeaSentencesPre, ZdaView } from './_components/Nmea'
+import {ResetInitButton, InitButton } from './_components/ResetInitButton'
 
 const sysSttColorTbl:Record<SysSttStrType,string> = {
   "IDLE":"gray",// スタンバイ状態：電源 ON 直後

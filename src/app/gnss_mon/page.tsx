@@ -8,8 +8,8 @@ import { DispDebugSelect } from '@/components/common/DispDebugSelect'
 import { usePortInfos } from '@/features/ws-serial/PortInfosProvider';
 import { CreHandler } from '@/features/ws-serial/creHandler'
 
-import {useNmeaRxSentences, useNmeaSingleLineAnalyseSentence,useNmeaMultiLineAnalyseSentence} from './hooks/useNmea'
-import {NmeaSentencesPre, NmeaMultiLineSentencesPre, ZdaView, RmcHeadVelView, RmcNorthCompass, GsvView} from './components/Nmea'
+import {useNmeaRxSentences, useNmeaSingleLineAnalyseSentence,useNmeaMultiLineAnalyseSentence} from './_hooks/useNmea'
+import {NmeaSentencesPre, NmeaMultiLineSentencesPre, ZdaView, RmcHeadVelView, RmcNorthCompass, GsvView} from './_components/Nmea'
 /*
 import Leaflet from 'leaflet'
 import 'leaflet/dist/leaflet.css';
@@ -17,7 +17,7 @@ import {updatePosByRmc, PositionMap} from './components/PositionMap'
 Leaflet.Icon.Default.imagePath =
   '//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/'
 */
-import {updatePosByRmc} from './components/PositionMap'
+import {updatePosByRmc} from './_components/PositionMap'
 
 const PositionMap = (props: {
   positionFixed: boolean,

@@ -7,7 +7,7 @@ import { ErrorMessagePre } from '@/components/common/ErrorMsg'
 import { DispDebugSelect } from '@/components/common/DispDebugSelect'
 import { usePortInfos } from '@/features/ws-serial/PortInfosProvider';
 import { portControlerType } from '@/features/ws-serial/wsFt4232';
-import { HwReset } from './components/ResetButtons'
+import { HwReset } from './_components/ResetButtons'
 
 //---------------------------------------
 

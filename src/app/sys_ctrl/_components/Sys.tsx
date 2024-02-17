@@ -1,5 +1,5 @@
 
-import {useSysStt, SysSttStrType} from '../hooks/useSys'
+import {useSysStt, SysSttStrType} from '../_hooks/useSys'
 import { CreHandler, sendCmdWaitRspType } from '@/features/ws-serial/creHandler'
 import CheckIndicator from '@/components/common/CheckIndicator'
 

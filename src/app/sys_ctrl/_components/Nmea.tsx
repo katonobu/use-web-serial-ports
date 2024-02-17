@@ -1,4 +1,4 @@
-import {sentenceInfoType, extractZdaString, dmLocToD} from '../hooks/useNmea'
+import {sentenceInfoType, extractZdaString, dmLocToD} from '../_hooks/useNmea'
 
 
 export const NmeaSentencesPre = (props: { sentenceInfos: sentenceInfoType[] }) => {

@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react'
-import {sentenceInfoType, dmLocToD} from '../hooks/useNmea'
+import {sentenceInfoType, dmLocToD} from '../_hooks/useNmea'
 // import { MapContainer, TileLayer, Marker,LayersControl } from 'react-leaflet'
 /*
 // https://logsuke.com/web/programming/leaflet/react-leaflet-marker-customize

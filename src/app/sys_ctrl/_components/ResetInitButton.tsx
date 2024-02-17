@@ -1,4 +1,4 @@
-import { resetByCmd, initCmds } from '../control/controlSequence'
+import { resetByCmd, initCmds } from '../_control/controlSequence'
 import { CreHandler, sendCmdWaitRspType } from '@/features/ws-serial/creHandler'
 
 
