@@ -30,6 +30,7 @@ export type portInfoType = {
     interface?: string | undefined;
     creHandler?:CreHandler | undefined;
     portCtrl?:portControlerType;
+    monCreHandler?:CreHandler | undefined;
 }
 
 export type portInfosType = {
@@ -110,6 +111,9 @@ export class WsFt4232 {
                 })
                 this.portInfos.sys_ctrl.creHandler = sysCreHandler
 
+                const sysMonCreHandler = new CreHandler((_: string) => Promise.resolve(1))
+                this.portInfos.sys_ctrl.monCreHandler = sysMonCreHandler
+
                 const nmea_room_name = this.portInfos.gnss_mon.name
                 const gnssCreHandler = new CreHandler((dataToSend: string) => {
                     this.socket?.emit('send_data', { 'room': nmea_room_name, 'tx_data': dataToSend })
@@ -130,6 +134,7 @@ export class WsFt4232 {
                         } else {
                             console.log(" SYS.???", rxData.replace("\r", ""))
                         }
+                        sysMonCreHandler.updateEvt(rxData.replace("\r","").replace("\n",""))
                     } else if (rxRoom === nmea_room_name) {
                         if (rxData.startsWith("$")) {
                             //console.log(" GNS.EVT", rxData.replace("\r",""))
@@ -139,6 +144,14 @@ export class WsFt4232 {
                         }
                     }
                 })
+                this.socket?.on('tx_data_notify', (data: any) => {
+                    const room = data.data.room
+                    const txData = data.data.tx_data
+                    if (room === sys_room_name) {
+                        sysMonCreHandler.updateEvt(txData.replace("\r","").replace("\n",""))
+                    }
+                })
+
                 this.portInfos.port_ctrl.portCtrl = {
                     setRts: (stt:boolean):Promise<boolean> => {
                         return new Promise((resolve) => {
